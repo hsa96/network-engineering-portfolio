@@ -25,5 +25,4 @@ This also has the added benefit of allowing me to access AUTO via SSH from my lo
 
 Now I can use VS code to SSH to my AUTO1 machine for easy editing of files for this project, and I have access to the terminal too, as well as other extensions. This is where I'm currently editing this documentation from!
 
-![alt text](..\images\image003.png)
-
+![alt text](../images/image003.png)
