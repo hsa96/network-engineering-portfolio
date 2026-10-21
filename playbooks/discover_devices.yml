@@ -1,0 +1,19 @@
+---
+- name: Gather basic facts from Cisco IOS devices
+  hosts: ios_routers:ios_switches
+  gather_facts: false
+
+  tasks:
+    - name: Collect basic device facts
+      cisco.ios.ios_facts:
+        gather_subset:
+          - min
+
+    - name: Display device summary
+      ansible.builtin.debug:
+        msg:
+          - "Inventory name: {{ inventory_hostname }}"
+          - "Management address: {{ ansible_host }}"
+          - "Device hostname: {{ ansible_net_hostname }}"
+          - "IOS version: {{ ansible_net_version }}"
+          - "Model: {{ ansible_net_model }}"
