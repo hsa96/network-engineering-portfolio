@@ -1,5 +1,5 @@
 ---
-- name: Gather basic facts from Cisco IOS devices
+- name: Validate access and backup Cisco IOS devices
   hosts: ios_routers:ios_switches
   gather_facts: false
 
@@ -17,3 +17,14 @@
           - "Device hostname: {{ ansible_net_hostname }}"
           - "IOS version: {{ ansible_net_version }}"
           - "Model: {{ ansible_net_model }}"
+    - name: Back up the running configuration
+      cisco.ios.ios_config:
+        backup: true
+        backup_options:
+          dir_path: "{{ backup_directory }}"
+        save_when: never
+      register: backup_result
+      
+    - name: Display backup location
+      ansible.builtin.debug:
+        var: backup_result.backup_path
